@@ -1,0 +1,61 @@
+CREATE USER 'admin'@'10.26.209.56' IDENTIFIED BY '123';
+
+CREATE DATABASE webchat;
+USE webchat;
+
+CREATE TABLE users(
+  `id` INT AUTO_INCREMENT,
+  `username` VARCHAR(30) NOT NULL UNIQUE,
+  `password` VARCHAR(130) NOT NULL,
+  `isadmin` BOOLEAN DEFAULT 0,
+  
+  PRIMARY KEY(`id`)
+);
+
+server {
+    listen 80;
+    root /var/www/html/PHPChat;
+    index  index.php index.html index.htm;
+    server_name  phpcat.com;
+    location / {
+    try_files $uri $uri/ =404;        
+    }
+    location ~ [^/]\.php(/|$) {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+
+php8.1-fpm.sock
+vim /etc/nginx/conf.d/ 
+
+ssh-keygen -t rsa -b 4096
+
+git init
+ 
+.git/config
+
+sshCommand = ssh -i /home/indrawebapp/.ssh/id_rsa
+sshCommand = ssh -i /home/indra/.ssh/id_rsa
+
+url = ssh://git@github.com/indrahad/cobagit.git
+
+url = git@github.com:indrahad/PHPChat.git
+
+url = ssh://git@github.com/indrahad/PHPChat.git
+
+core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        sshCommand = ssh -i /home/indrawebapp/.ssh/id_rsa
+[remote "origin"]
+        url = ssh://git@github.com/indrahad/PHPChat.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+
+
+
+
